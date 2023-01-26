@@ -11,5 +11,9 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.28.0",
     "volleyball": "^1.5.1"
+  },
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
