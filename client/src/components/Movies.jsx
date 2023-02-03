@@ -1,7 +1,5 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
-//import "../index.css";
-//import "bulma/css/bulma.min.css";
 
 const Movies = () => {
   const api_Url = "https://api.themoviedb.org/3";
@@ -19,51 +17,67 @@ const Movies = () => {
     const type = key ? "search" : "discover";
     const {
       data: { results },
-    } = await axios.get(`${api_Url}/${type}/movie`, {
-      params: { api_key: api_key, query: key },
-    });
+    } = await axios.get(
+      `${api_Url}/discover/movie?sort_by=popularity.desc&language=es-ES&api_key=${api_key}`,
+      {
+        params: { api_key: api_key, query: key },
+      }
+    );
 
     setMovies(results);
     setMovie(results[0]);
   };
 
-  //Buscar Peliculas
+  // //Buscador
 
-  const searchMovies = (e) => {
-    e.preventDefault();
-    fetchMovies(key);
-  };
+  // const searchMovies = (e) => {
+  //   e.preventDefault();
+  //   fetchMovies(key);
+  // };
 
   useEffect(() => {
     fetchMovies();
   }, []);
 
   return (
-    <div>
-      <br />
-      <h2 className=""></h2>
-      <form className="" onSubmit={searchMovies}>
-        <input
-          class="input"
-          type="text"
-          placeholder="Search"
-          onChange={(e) => setKey(e.target.value)}
-        />
-        <button class="button is-dark">Search</button>
-      </form>
-      <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd homeImages">
-        {movies.map((movie) => (
-          <div key={movie.id} class="column is-one-fifth">
-            <img
-              src={`${url_img + movie.poster_path}`}
-              alt={movie.title}
-              class="poster"
-            />
-            <p class="homeTitle">{movie.title}</p>
-          </div>
-        ))}
-      </div>
+    <div class="grid grid-cols-5 gap-5 pt-20 p-5">
+      {movies.map((movie) => (
+        <div key={movie.id} class="">
+          <img
+            src={`${url_img + movie.poster_path}`}
+            alt={movie.title}
+            class=""
+          />
+          <p class="text-center">{movie.title}</p>
+        </div>
+      ))}
     </div>
+
+    // <div>
+    //   <br />
+    //   <h2 className=""></h2>
+    //   <form className="" onSubmit={searchMovies}>
+    //     <input
+    //       class="input"
+    //       type="text"
+    //       placeholder="Search"
+    //       onChange={(e) => setKey(e.target.value)}
+    //     />
+    //     <button class="button is-dark">Search</button>
+    //   </form>
+    //   <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd homeImages">
+    //     {movies.map((movie) => (
+    //       <div key={movie.id} class="column is-one-fifth">
+    //         <img
+    //           src={`${url_img + movie.poster_path}`}
+    //           alt={movie.title}
+    //           class="poster"
+    //         />
+    //         <p class="homeTitle">{movie.title}</p>
+    //       </div>
+    //     ))}
+    //   </div>
+    // </div>
   );
 };
 
