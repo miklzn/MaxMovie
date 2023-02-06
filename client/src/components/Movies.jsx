@@ -42,14 +42,16 @@ const Movies = () => {
   return (
     <div class="grid grid-cols-5 gap-5 pt-20 p-5">
       {movies.map((movie) => (
-        <div key={movie.id} class="">
-          <img
-            src={`${url_img + movie.poster_path}`}
-            alt={movie.title}
-            class=""
-          />
-          <p class="text-center">{movie.title}</p>
-        </div>
+        <a href={`movie/${movie.id}`}>
+          <div key={movie.id} class="">
+            <img
+              src={`${url_img + movie.poster_path}`}
+              alt={movie.title}
+              class=""
+            />
+            <p class="text-center">{movie.title}</p>
+          </div>
+        </a>
       ))}
     </div>
 
