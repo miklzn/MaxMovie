@@ -8,36 +8,36 @@ const Movie = () => {
   const url_img = "https://image.tmdb.org/t/p/original";
 
   const { id } = useParams();
-  const [movie, setMovie] = useState([]);
+  const [tvShow, setTvShow] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${api_Url}/movie/${id}?api_key=${api_key}&language=es-ES`)
+      .get(`${api_Url}/tv/${id}?api_key=${api_key}&language=es-ES`)
       .then((res) => res.data)
-      .then((movie) => {
-        setMovie(movie);
+      .then((tvShow) => {
+        setTvShow(tvShow);
       });
   }, []);
 
   return (
     <div
       class="bg-cover "
-      style={{ backgroundImage: `url(${url_img}${movie.backdrop_path})` }}
+      style={{ backgroundImage: `url(${url_img}${tvShow.backdrop_path})` }}
     >
       <section class="pt-3 text-gray-600 body-font overflow-hidden backdrop-opacity-10 backdrop-invert bg-white/40">
         <div class="container px-5 py-24 mx-auto ">
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
             <img
-              alt={movie.title}
+              alt={tvShow.name}
               class="lg:w-1/3 w-full lg:h-auto md:h-full sm:h-full object-cover object-center rounded "
-              src={`${url_img + movie.poster_path}`}
+              src={`${url_img + tvShow.poster_path}`}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 class="text-sm title-font text-stone-800 tracking-widest">
-                {movie.release_date}
+                {tvShow.first_air_date}
               </h2>
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
-                {movie.title}
+                {tvShow.name}
               </h1>
               <div class="flex mb-1">
                 <span class="flex items-center">
@@ -54,7 +54,7 @@ const Movie = () => {
                   </svg>
 
                   <span class="text-stone-800 ml-3">
-                    {movie.vote_average} / 10
+                    {tvShow.vote_average} / 10
                   </span>
                 </span>
                 <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
@@ -96,9 +96,9 @@ const Movie = () => {
                   </a>
                 </span>
               </div>
-              <p class="leading-relaxed text-stone-800">{movie.overview}</p>
+              <p class="leading-relaxed text-stone-800">{tvShow.overview}</p>
               <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-                {movie?.genres?.map((genre) => (
+                {tvShow?.genres?.map((genre) => (
                   <button
                     type="button"
                     class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"

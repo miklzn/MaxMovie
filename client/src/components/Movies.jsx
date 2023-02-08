@@ -4,13 +4,12 @@ import axios from "axios";
 const Movies = () => {
   const api_Url = "https://api.themoviedb.org/3";
   const api_key = "5b82cb347a5cf1f6ae1604d916c5cdc6";
-  const img_path = "https://image.tmdb.org/t/p/original";
   const url_img = "https://image.tmdb.org/t/p/original";
 
   const [movies, setMovies] = useState([]);
   const [key, setKey] = useState("");
   const [trailer, setTrailer] = useState(null);
-  const [movie, setMovie] = useState({ title: "Loading Movies " });
+  const [movie, setMovie] = useState({ title: " Cargando Peliculas " });
   const [playing, setPlaying] = useState(false);
 
   const fetchMovies = async (key) => {

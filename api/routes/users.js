@@ -29,7 +29,7 @@ router.post("/login", (req, res) => {
         id: user.id,
         email: user.email,
         name: user.name,
-        lastName: user.lastName,
+        userName: user.userName,
       };
 
       const token = generateToken(payload);
@@ -51,7 +51,7 @@ router.post("/logout", (req, res) => {
 //http://localhost:3001/api/users/me
 
 router.get("/me", validateAuth, (req, res) => {
-  Users.findByPk(req.user.id, { include: Properties }).then((user) => {
+  Users.findByPk(req.user.id).then((user) => {
     res.send(user);
   });
 });

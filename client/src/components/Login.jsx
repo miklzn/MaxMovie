@@ -1,6 +1,40 @@
-import React from "react";
+import { React, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/user";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "http://localhost:3001/api/users/login",
+        {
+          email: email,
+          password: password,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => dispatch(setUser(res.data)))
+      .then(() => navigate("/"))
+      .catch((error) => console.log(error));
+  };
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
   return (
     <section class="pt-20">
       <div class="item-center justify-center flex min- overflow-hidden">
@@ -14,7 +48,12 @@ const Login = () => {
 
             <div class="mt-8">
               <div class="mt-6">
-                <form action="#" method="POST" class="space-y-6">
+                <form
+                  action="#"
+                  method="POST"
+                  class="space-y-6 "
+                  onSubmit={handleSubmit}
+                >
                   <div>
                     <label
                       for="email"
@@ -28,8 +67,9 @@ const Login = () => {
                         name="email"
                         type="email"
                         autocomplete="email"
-                        required=""
                         placeholder="Tu Email"
+                        required
+                        onChange={handleChangeEmail}
                         class="block w-full px-5 py-3 text-base placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg text-neutral-600 bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                       />
                     </div>
@@ -48,8 +88,9 @@ const Login = () => {
                         name="password"
                         type="password"
                         autocomplete="current-password"
-                        required=""
                         placeholder="Tu contraseña"
+                        required
+                        onChange={handleChangePassword}
                         class="block w-full px-5 py-3 text-base placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg text-neutral-600 bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                       />
                     </div>
@@ -64,7 +105,7 @@ const Login = () => {
 
                     <div class="text-sm">
                       <a
-                        href="#"
+                        href="/register"
                         class="font-medium text-emerald-500 hover:text-emerald-700"
                       >
                         ¡Registrate acá!
@@ -75,7 +116,7 @@ const Login = () => {
                   <div>
                     <button
                       type="submit"
-                      class="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-emerald-500 rounded-xl hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      class="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-emerald-500 rounded-xl hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
                     >
                       Iniciar
                     </button>

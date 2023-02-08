@@ -19,14 +19,14 @@ User.init(
       type: S.STRING,
       allowNull: false,
     },
-    lastName: {
+    userName: {
       type: S.STRING,
       allowNull: false,
+      unique: true,
     },
     email: {
       type: S.STRING,
       allowNull: false,
-
       unique: true,
       validate: {
         isEmail: true,
