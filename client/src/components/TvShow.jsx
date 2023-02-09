@@ -54,46 +54,11 @@ const Movie = () => {
                   </svg>
 
                   <span class="text-stone-800 ml-3">
-                    {tvShow.vote_average} / 10
+                    {tvShow?.vote_average?.toFixed(1)} / 10
                   </span>
                 </span>
                 <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
-                  <a class="text-gray-500">
-                    <svg
-                      fill="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      class="w-5 h-5"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                    </svg>
-                  </a>
-                  <a class="text-gray-500">
-                    <svg
-                      fill="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      class="w-5 h-5"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                    </svg>
-                  </a>
-                  <a class="text-gray-500">
-                    <svg
-                      fill="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      class="w-5 h-5"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                    </svg>
-                  </a>
+                  {tvShow.vote_count} Votos
                 </span>
               </div>
               <p class="leading-relaxed text-stone-800">{tvShow.overview}</p>
@@ -101,7 +66,7 @@ const Movie = () => {
                 {tvShow?.genres?.map((genre) => (
                   <button
                     type="button"
-                    class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                    class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                   >
                     {genre.name}
                   </button>
@@ -109,10 +74,10 @@ const Movie = () => {
               </div>
               <div class="flex">
                 {/* <span class="title-font font-medium text-2xl text-gray-900">
-                  $58.00
+                  $
                 </span> */}
-                <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                  Button
+                <button class="flex ml-auto text-white bg-emerald-500 border-0 py-2 px-6 focus:outline-none hover:bg-emerald-700 rounded-lg">
+                  Ver Trailer
                 </button>
                 <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                   <svg

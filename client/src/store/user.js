@@ -10,23 +10,23 @@ const initialState = {
   name: null,
   userName: null,
   email: null,
-  //movies: [],
+  movies: [],
 };
 
 const userReducer = createReducer(initialState, {
   [setUser]: (state, action) => action.payload,
   [userLogout]: (state, action) => ({}),
-  //   [addFavorites]: (state, action) => {
-  //     return state.properties.push(action.payload);
-  //   },
-  //   [removeFavorite]: (state, action) => {
-  //     return {
-  //       ...state,
-  //       properties: state.properties.filter(
-  //         (fav) => fav.id !== action.payload.id
-  //       ),
-  //     };
-  //   },
+  [addFavorites]: (state, action) => {
+    return state.properties.push(action.payload);
+  },
+  [removeFavorite]: (state, action) => {
+    return {
+      ...state,
+      properties: state.properties.filter(
+        (fav) => fav.id !== action.payload.id
+      ),
+    };
+  },
 });
 
 export default userReducer;
