@@ -1,4 +1,4 @@
-# House Of Dev
+# Max Movie
 
 Max Movie es un sitio web de peliculas y series donde el usuario puede encontrar la informacion de dicho contenido y a su vez crearse una cuenta donde pueda guardar su contenido favorito.
 
